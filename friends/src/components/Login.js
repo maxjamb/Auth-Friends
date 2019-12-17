@@ -3,8 +3,8 @@ import "./Login.css";
 import axios from "axios";
 
 const initialUser = {
-  username: "admin",
-  password: "1234"
+  username: "Lambda School",
+  password: "i<3Lambd4"
 };
 
 const Login = props => {
@@ -16,8 +16,10 @@ const Login = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(user.username);
-    console.log(user.password);
+    axios.post("http://localhost:5000/api/login", user).then(res => {
+      localStorage.setItem("token", res.data.payload);
+      props.history.push("/friends");
+    });
   };
   return (
     <div className="lg-container">
