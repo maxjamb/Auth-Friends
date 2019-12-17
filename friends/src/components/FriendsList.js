@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { axiosWithAuth } from "../axios/axiosWithAuth";
 import AddFriends from "./AddFriends";
-// import "./friendslist.css";
+import "./FriendsList.css";
 
 export default function FriendsList() {
   const [friends, setFriends] = useState([]);
@@ -45,19 +45,6 @@ export default function FriendsList() {
     setEditMode(true);
   };
 
-  //   const editFriend = () => {
-  //     axiosWithAuth()
-  //       .put(`http://localhost:5000/api/friends/${friend.id}`, friend)
-  //       .then(res => {
-  //         console.log(res.data);
-  //         console.log("edited friend!");
-  //         setFriends(res.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //         alert("An error occurred!");
-  //       });
-  //   };
   const deleteFriend = id => {
     axiosWithAuth()
       .delete(`http://localhost:5000/api/friends/${id}`)
@@ -77,9 +64,6 @@ export default function FriendsList() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    // console.log("friends = ",friends);
-    // console.log("friend ",friend)
-
     const found = friends.find(el => el.id === friend.id);
     if (!found) addFriend(friend.id);
   };
